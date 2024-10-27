@@ -67,23 +67,26 @@ async function inquirerPrompt() {
 
 	// let answer = await inquirer.prompt([	
 	// inquirer.prompt([		
-	let answer = inquirer
+	let answers = await inquirer
 		.prompt([		
-    	{
-	      type: 'input',
-	      name: getArrayNames(iName),
-	      message: getArrayQuestions(iMessage),
-		  validate: (input) => input ? true : 'answer cannot be empty.',		  		  
-	    }
-		.then( (answer) => {
-			//const writeToFile = writeToFile('README.MD', answers);
-			console.log('answer:', answer);	 
-		})		
-	  ])
+			{
+			type: 'input',
+			name: getArrayNames(iName),
+			message: getArrayQuestions(iMessage),
+			validate: (input) => input ? true : 'answer cannot be empty.',		  		  
+			}	
+	  	// .then( (answers) => {
+		// 	//const writeToFile = writeToFile('README.MD', answers);
+		// 	console.log('answer:', answers);	 
+		// })				
+	  	])
 
-	// console.log(`answer: ${answers}`);
+	  	// .then( (answers) => {
+		// 	//const writeToFile = writeToFile('README.MD', answers);
+		// 	console.log('answer:', answers);	 
+		// });		  
 
-
+	// console.log(`answers: ${answers}`);
 
 	// const answers = await inquirer.prompt(questions);
 	// console.log('Repository Information:', answers);	 

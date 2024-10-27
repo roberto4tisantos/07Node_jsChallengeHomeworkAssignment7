@@ -2,13 +2,38 @@
 import inquirer from 'inquirer';
 import fs from 'fs';
 
+// Create an array of names
+const names = [ 'Project title:',
+                'Description:',
+                'Project installation:',
+	        'Project usage information:',
+		'Project contributing:',
+		'Project tests:' ];
+
 // TODO: Create an array of questions for user input
-const questions = ['What is your project title?',
-                   'What is project description?',
-                   'What is project installation?',
-	           'What is project usage information?',
-		   'What is project contributing?',
-		   'What is project tests?' ];
+const questions = [ 'What is your project title?',
+                    'What is project description?',
+                    'What is project installation?',
+	            'What is project usage information?',
+		    'What is project contributing?',
+		    'What is project tests?' ];
+
+"Array index
+let index = 0;
+
+//Get array names
+function getArrayNames(arrayNames) {
+
+	//return name
+	return arrayNames[index];
+}
+
+//Get array questions
+function getArrayQuestions(arrayQuestions) {
+
+	//return question
+	return arrayQuestions[index];
+}
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
@@ -18,54 +43,40 @@ function writeToFile(fileName, data) {
     );
 }
 
-// TODO: Create a function to initialize app
-function init() {
-
-}
-
-// Function call to initialize app
-init();
 
 //WHEN I enter my project title
 //THEN this is displayed as the title of the README
 //WHEN I enter a description, installation instructions, usage information, contribution guidelines, and test instructions
 //THEN this information is added to the sections of the README entitled Description, Installation, Usage, Contributing, and Tests
-inquirer
-  .prompt([
-    {
-      type: 'input',
-      name: 'Project_Title',
-      message: 'What is your project title?',
-    },
-    {
-      type: 'input',
-      name: 'Description',
-      message: 'What is project description:',
-    },
-    {
-      type: 'input',
-      name: 'Installation',
-      message: 'What is project installation?',
-    },
-    {
-      type: 'input',
-      name: 'Usage',
-      message: 'What is project usage information?',
-    },
-    {
-      type: 'input',
-      name: 'Contributing',
-      message: 'What is project contributing?',
-    },
-    {
-      type: 'input',
-      name: 'Tests',
-      message: 'What is project tests?',
-    },
-  ])
+function inquirerPrompt() {
 
-.then( (answers) => {
-    const writeToFile = writeToFile('README.MD', answers);
-  });
+	inquirer
+	  .prompt([
+    	{
+	      type: 'input',
+	      name: getArrayNames(names)),
+	      message: getArrayQuestions(questions)),
+	    },
+	  ])
+
+	//.then( (answers) => {
+	//    const writeToFile = writeToFile('README.MD', answers);
+	//  });
+
+
+// TODO: Create a function to initialize app
+function init() {
+
+	//Loop through each question
+	questions.forEach(inquirerPrompt);
+
+	//Increase index
+	index += 1;
+}
+
+// Function call to initialize app
+init();
+
+
 
 

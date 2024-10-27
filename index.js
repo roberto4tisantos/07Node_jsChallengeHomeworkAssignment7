@@ -2,14 +2,6 @@
 import inquirer from 'inquirer';
 import fs from 'fs';
 
-// TODO: Create an array of questions for user input
-const questions = [ 'What is your project title?',
-					'What is project description?',
-					'What is project installation?',
-					'What is project usage information?',
-					'What is project contributing?',
-					'What is project tests?' ];
-
 // Create an array of names
 const names = [ 'Project title:',
                 'Description:',
@@ -18,21 +10,32 @@ const names = [ 'Project title:',
 				'Project contributing:',
 				'Project tests:' ];
 
-//Array index
-let idx = 0;
+// TODO: Create an array of questions for user input
+const questions = [ 'What is your project title?',
+	'What is project description?',
+	'What is project installation?',
+	'What is project usage information?',
+	'What is project contributing?',
+	'What is project tests?' ];		
+	
+	//Array index
+	let iMessage = -1;
+	let iName = -1;	
 
 //Get array names
-function getArrayNames() {
+function getArrayNames(iName) {
 	// console.log(`arrayName: ${names[idx]}`);	
+	// iName += 1;	
 	//return name
-	return names[idx];
+	return names[iName];
 }
 
 //Get array questions
-function getArrayQuestions() {
+function getArrayQuestions(iMessage) {
 	// console.log(`arrayQuestion: ${questions[idx]}`);
+	// iMessage += 1;
 	//return question
-	return questions[idx];
+	return questions[iMessage];
 }
 
 // TODO: Create a function to write README file
@@ -49,7 +52,8 @@ function writeToFile(fileName, data) {
 //THEN this information is added to the sections of the README entitled Description, Installation, Usage, Contributing, and Tests
 async function inquirerPrompt() {
 
-	let question = prompt(`${getArrayQuestions()}`);
+	// let question = getArrayQuestions();
+	// let answer = prompt(question);
 
 	// // let question = prompt(getArrayQuestions(questions));
 	// let name = getArrayNames();
@@ -57,29 +61,36 @@ async function inquirerPrompt() {
 	// let qust = getArrayQuestions();  
 	// // console.log(`inquirerPrompt.question: ${qust}`);
 
-	let answers = await inquirer.prompt([	
+	//Array index
+	iMessage ++;
+	iName ++;
+
+	// let answer = await inquirer.prompt([	
 	// inquirer.prompt([		
+	let answer = inquirer
+		.prompt([		
     	{
 	      type: 'input',
-	      name: getArrayNames(),
-	      message: question,
+	      name: getArrayNames(iName),
+	      message: getArrayQuestions(iMessage),
 		  validate: (input) => input ? true : 'answer cannot be empty.',		  		  
 	    }
+		.then( (answer) => {
+			//const writeToFile = writeToFile('README.MD', answers);
+			console.log('answer:', answer);	 
+		})		
 	  ])
 
 	// console.log(`answer: ${answers}`);
 
-	// .then( (answers) => {
-	// //    const writeToFile = writeToFile('README.MD', answers);
-	// 	console.log('answer:', answers);	 
-	//  });
+
 
 	// const answers = await inquirer.prompt(questions);
 	// console.log('Repository Information:', answers);	 
 
 	//Increase index
 	// console.log(`Index of Array: ${idx}`)	
-	idx ++;	
+	
 
 }
 
@@ -87,7 +98,7 @@ async function inquirerPrompt() {
 // TODO: Create a function to initialize app
 function init() {
 	//Loop through each question
-	questions.forEach(inquirerPrompt());
+	questions.forEach(inquirerPrompt);
 }
 
 // Function call to initialize app

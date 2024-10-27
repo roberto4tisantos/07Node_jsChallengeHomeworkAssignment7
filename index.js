@@ -23,14 +23,14 @@ let idx = 0;
 
 //Get array names
 function getArrayNames() {
-	console.log(`arrayName: ${names[idx]}`);	
+	// console.log(`arrayName: ${names[idx]}`);	
 	//return name
 	return names[idx];
 }
 
 //Get array questions
 function getArrayQuestions() {
-	console.log(`arrayQuestion: ${questions[idx]}`);
+	// console.log(`arrayQuestion: ${questions[idx]}`);
 	//return question
 	return questions[idx];
 }
@@ -49,33 +49,36 @@ function writeToFile(fileName, data) {
 //THEN this information is added to the sections of the README entitled Description, Installation, Usage, Contributing, and Tests
 async function inquirerPrompt() {
 
-	// let question = prompt(getArrayQuestions(questions));
-	let name = getArrayNames();
-	// console.log(`inquirerPrompt.name: ${name}`);
-	let qust = getArrayQuestions();  
-	// console.log(`inquirerPrompt.question: ${qust}`);
+	let question = prompt(`${getArrayQuestions()}`);
 
-	let answers = await inquirer.prompt([
+	// // let question = prompt(getArrayQuestions(questions));
+	// let name = getArrayNames();
+	// // console.log(`inquirerPrompt.name: ${name}`);
+	// let qust = getArrayQuestions();  
+	// // console.log(`inquirerPrompt.question: ${qust}`);
+
+	let answers = await inquirer.prompt([	
+	// inquirer.prompt([		
     	{
 	      type: 'input',
-	      name: name,
-	      message: qust,
-		  validate: (input) => input ? true : 'Repository name cannot be empty.',
+	      name: getArrayNames(),
+	      message: question,
+		  validate: (input) => input ? true : 'answer cannot be empty.',		  		  
 	    }
 	  ])
 
-	console.log(`answer: ${answers}`);
+	// console.log(`answer: ${answers}`);
 
 	// .then( (answers) => {
 	// //    const writeToFile = writeToFile('README.MD', answers);
-	// 	console.log('Repository Information:', answers);	 
+	// 	console.log('answer:', answers);	 
 	//  });
 
 	// const answers = await inquirer.prompt(questions);
 	// console.log('Repository Information:', answers);	 
 
 	//Increase index
-	console.log(`Index of Array: ${idx}`)	
+	// console.log(`Index of Array: ${idx}`)	
 	idx ++;	
 
 }

@@ -19,26 +19,28 @@ const names = [ 'Project title:',
 				'Project tests:' ];
 
 //Array index
-let index = 0;
+let idx = 0;
 
 //Get array names
-function getArrayNames(arrayNames) {
+function getArrayNames() {
+	console.log(`arrayName: ${names[idx]}`);	
 	//return name
-	return arrayNames[index];
+	return names[idx];
 }
 
 //Get array questions
-function getArrayQuestions(arrayQuestions) {
+function getArrayQuestions() {
+	console.log(`arrayQuestion: ${questions[idx]}`);
 	//return question
-	return arrayQuestions[index];
+	return questions[idx];
 }
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
 
-    fs.writeFile('index.html', htmlPageContent, (err) =>
-      err ? console.log(err) : console.log('Successfully created index.html!')
-    );
+    // fs.writeFile('index.html', htmlPageContent, (err) =>
+    //   err ? console.log(err) : console.log('Successfully created index.html!')
+    // );
 }
 
 //WHEN I enter my project title
@@ -48,15 +50,21 @@ function writeToFile(fileName, data) {
 async function inquirerPrompt() {
 
 	// let question = prompt(getArrayQuestions(questions));
+	let name = getArrayNames();
+	// console.log(`inquirerPrompt.name: ${name}`);
+	let qust = getArrayQuestions();  
+	// console.log(`inquirerPrompt.question: ${qust}`);
 
-	const answers = await inquirer.prompt([
+	let answers = await inquirer.prompt([
     	{
 	      type: 'input',
-	      name: getArrayNames(names),
-	      message: getArrayQuestions(questions),  
+	      name: name,
+	      message: qust,
 		  validate: (input) => input ? true : 'Repository name cannot be empty.',
 	    }
 	  ])
+
+	console.log(`answer: ${answers}`);
 
 	// .then( (answers) => {
 	// //    const writeToFile = writeToFile('README.MD', answers);
@@ -67,15 +75,16 @@ async function inquirerPrompt() {
 	// console.log('Repository Information:', answers);	 
 
 	//Increase index
-	console.log(`Index of Array: ${index}`)	
-	index += 1;	
+	console.log(`Index of Array: ${idx}`)	
+	idx ++;	
+
 }
 
 
 // TODO: Create a function to initialize app
 function init() {
 	//Loop through each question
-	questions.forEach(inquirerPrompt);
+	questions.forEach(inquirerPrompt());
 }
 
 // Function call to initialize app

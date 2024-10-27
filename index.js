@@ -47,11 +47,13 @@ function writeToFile(fileName, data) {
 //THEN this information is added to the sections of the README entitled Description, Installation, Usage, Contributing, and Tests
 async function inquirerPrompt() {
 
-	inquirer.prompt([
+	// let question = prompt(getArrayQuestions(questions));
+
+	const answers = await inquirer.prompt([
     	{
 	      type: 'input',
 	      name: getArrayNames(names),
-	      message:  prompt(getArrayQuestions(questions)),
+	      message: getArrayQuestions(questions),  
 		  validate: (input) => input ? true : 'Repository name cannot be empty.',
 	    }
 	  ])

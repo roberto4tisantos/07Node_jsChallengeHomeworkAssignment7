@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 import inquirer from 'inquirer';
 import fs from 'fs';
+import generateMarkdown from './generateMarkdown.js';
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -59,17 +60,18 @@ function writeToFile(fileName, data) {
           console.error(err);
           return;
         }
-        console.log('README.md has been created successfully!');
+        console.log('README.md generated successfully!');
       });
 }
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt(questions)
-            .then((answers) => {
-              const markdown = generateMarkdown(answers);
-              writeToFile('README.md', markdown);
-            });
+    inquirer
+    .prompt(questions)
+    .then((answers) => {
+        const markdown = generateMarkdown(answers);
+        writeToFile('README.md', markdown);
+      });
 }
 
 // Function call to initialize app

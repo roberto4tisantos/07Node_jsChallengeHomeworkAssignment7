@@ -1,9 +1,9 @@
-# UofT Web Developer
+# node.js
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ## Description
-Node vs Javascript
+javascript
 
 ## Table of Contents
 - [Installation](#installation)
@@ -14,19 +14,19 @@ Node vs Javascript
 - [Questions](#questions)
 
 ## Installation
-Install Node.js 
+node.js
 
 ## Usage
-Create READ.md file
+javascript
 
 ## License
 This project is licensed by MIT license.
 
 ## Contributing
-UofT
+node.js
 
 ## Tests
-insert some information about project
+javascript
 
 ## Questions
-[GitHub](https://github.com/roberto4tisantos) or email me at roberto.4ti@gmail.com.
+[GitHub](https://github.com/roberto.forti) or email me at roberto.fs@gmail.com.
